@@ -61,7 +61,7 @@
                 and expats living in Germany. No jargon. No fluff. Just results.
             </p>
             <div class="hero-cta">
-                <a href="#book" class="btn btn-outline btn-white">Book a Free 15-Min Call</a>
+                <a href="#book" class="btn btn-primary">Book a Free 15-Min Call</a>
                 <a href="https://instagram.com/horbach.asset.guide" target="_blank" class="btn btn-outline btn-white">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
@@ -535,7 +535,7 @@
                 <div class="booking-info">
                     <p class="booking-desc">
                         Not sure where to start with investing, real estate, or pensions in Germany?
-                        Book a free call and get a personalized roadmap.
+                        Fill in the form and we will reach out within 24 hours to confirm your slot.
                     </p>
                     <ul class="booking-benefits">
                         <li>
@@ -559,17 +559,47 @@
                     </ul>
                 </div>
                 <div class="booking-widget">
-                    <img src="booking-img.png" alt="Video consultation illustration" class="booking-img">
-                    <div class="calendly-placeholder" id="calendly-widget">
-                        <div class="calendly-fallback">
-                            <h3>Schedule Your Call</h3>
-                            <p>Click below to pick a time that works for you.</p>
-                            <a href="https://calendly.com" target="_blank" class="btn btn-primary btn-full">
-                                Open Calendar
-                            </a>
-                            <small>Powered by Calendly — free to book</small>
+                    <form class="booking-form" id="bookingForm" action="https://formspree.io/f/YOUR_FORM_ID">
+                        <div class="form-group">
+                            <label for="bookName">Full Name</label>
+                            <input type="text" id="bookName" name="name" placeholder="Your name" required>
                         </div>
-                    </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="bookEmail">Email Address</label>
+                                <input type="email" id="bookEmail" name="email" placeholder="you@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bookPhone">Phone / WhatsApp</label>
+                                <input type="tel" id="bookPhone" name="phone" placeholder="+49 170 123 4567" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="bookTopic">What do you need help with?</label>
+                            <select id="bookTopic" name="topic" required>
+                                <option value="" disabled selected>Select a topic...</option>
+                                <option value="investing">ETF &amp; Investing</option>
+                                <option value="realestate">Real Estate &amp; Mortgages</option>
+                                <option value="pension">Pension &amp; Retirement</option>
+                                <option value="insurance">Insurance &amp; Protection</option>
+                                <option value="general">General Financial Planning</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="bookMessage">Anything else we should know?</label>
+                            <textarea id="bookMessage" name="message" rows="3" placeholder="Optional: your situation, goals, or questions..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <span class="btn-text">Book My Free Call</span>
+                            <span class="btn-loader" hidden>Sending...</span>
+                        </button>
+                        <p class="form-note">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                            We will email you within 24 hours to confirm your time slot.
+                        </p>
+                    </form>
                 </div>
             </div>
         </div>
@@ -669,6 +699,14 @@
             </div>
         </div>
     </footer>
+
+    <!-- Sticky Book Button -->
+    <a href="#book" class="sticky-book-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        Book Free Call
+    </a>
 
     <script src="script.js"></script>
 </body>
