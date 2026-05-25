@@ -366,37 +366,42 @@
                 <li><a href="index.html#contact">Contact</a></li>
                 <li class="nav-lang">
                     <div class="lang-card">
-                        <select class="lang-select" id="langSelect" onchange="if(this.value){const u=encodeURIComponent(window.location.href);window.location.href='https://translate.google.com/translate?sl=en&tl='+this.value+'&u='+u;}">
+                        <select class="lang-select" id="langSelect" onchange="translatePage(this.value)">
                         <option value="" selected>🌐 Language</option>
+                        <option value="de">Deutsch</option>
+                        <option value="tr">Türkçe</option>
+                        <option value="pl">Polski</option>
+                        <option value="ru">Русский</option>
+                        <option value="it">Italiano</option>
+                        <option value="ar">العربية</option>
                         <option value="es">Español</option>
                         <option value="fr">Français</option>
-                        <option value="de">Deutsch</option>
+                        <option value="ro">Română</option>
+                        <option value="hr">Hrvatski</option>
+                        <option value="bg">Български</option>
+                        <option value="el">Ελληνικά</option>
+                        <option value="pt">Português</option>
+                        <option value="uk">Українська</option>
+                        <option value="sr">Српски</option>
+                        <option value="hu">Magyar</option>
+                        <option value="nl">Nederlands</option>
+                        <option value="vi">Tiếng Việt</option>
                         <option value="zh-CN">中文</option>
                         <option value="hi">हिन्दी</option>
-                        <option value="ar">العربية</option>
                         <option value="bn">বাংলা</option>
-                        <option value="pt">Português</option>
-                        <option value="ru">Русский</option>
                         <option value="ur">اردو</option>
-                        <option value="id">Bahasa Indonesia</option>
-                        <option value="ja">日本語</option>
-                        <option value="tr">Türkçe</option>
-                        <option value="vi">Tiếng Việt</option>
-                        <option value="ko">한국어</option>
-                        <option value="it">Italiano</option>
-                        <option value="pl">Polski</option>
-                        <option value="uk">Українська</option>
-                        <option value="ro">Română</option>
-                        <option value="ms">Melayu</option>
-                        <option value="ta">தமிழ்</option>
-                        <option value="te">తెలుగు</option>
                         <option value="fa">فارسی</option>
-                        <option value="pa">ਪੰਜਾਬੀ</option>
-                        <option value="sw">Kiswahili</option>
+                        <option value="ps">پښتو</option>
+                        <option value="ta">தமிழ்</option>
+                        <option value="ku">Kurdî</option>
+                        <option value="sq">Shqip</option>
+                        <option value="ja">日本語</option>
+                        <option value="ko">한국어</option>
+                        <option value="id">Bahasa Indonesia</option>
                     </select>
                     </div>
                 </li>
-                <li><a href="https://instagram.com/horbach.asset.guide" target="_blank" class="nav-ig">@horbach.asset.guide</a></li>
+                <li><a href="https://www.instagram.com/horbach_asset_guide/" target="_blank" class="nav-ig">@horbach_asset_guide</a></li>
             </ul>
         </div>
     </nav>
@@ -686,7 +691,7 @@
             </div>
             <div class="footer-bottom">
                 <p>© Horbach Asset Guide. All rights reserved.</p>
-                <p class="footer-ig">Follow: <a href="https://instagram.com/horbach.asset.guide" target="_blank">@horbach.asset.guide</a></p>
+                <p class="footer-ig">Follow: <a href="https://www.instagram.com/horbach_asset_guide/" target="_blank">@horbach_asset_guide</a></p>
             </div>
         </div>
     </footer>
@@ -700,27 +705,54 @@
     </a>
 
     <script>
+    // Global translator function
+    function translatePage(lang) {
+        if (!lang) return;
+        var url = window.location.href;
+        if (url.includes('translate.google')) {
+            var match = url.match(/[?&]u=([^&]+)/);
+            if (match) { url = decodeURIComponent(match[1]); }
+        }
+        window.location.href = 'https://translate.google.com/translate?sl=en&tl=' + lang + '&u=' + encodeURIComponent(url);
+    }
+
     (function() {
         'use strict';
-        // Mobile menu
-        const menuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
+        // Mobile menu (with body scroll lock)
+        var menuBtn = document.querySelector('.mobile-menu-btn');
+        var navLinks = document.querySelector('.nav-links');
+        var savedScrollY = 0;
+
+        function lockBodyScroll() {
+            savedScrollY = window.scrollY;
+            document.body.style.top = '-' + savedScrollY + 'px';
+            document.body.classList.add('menu-open');
+        }
+        function unlockBodyScroll() {
+            document.body.classList.remove('menu-open');
+            document.body.style.top = '';
+            window.scrollTo(0, savedScrollY);
+        }
+
         if (menuBtn && navLinks) {
-            menuBtn.addEventListener('click', () => {
+            menuBtn.addEventListener('click', function() {
                 navLinks.classList.toggle('active');
                 menuBtn.classList.toggle('active');
-                menuBtn.setAttribute('aria-expanded', String(navLinks.classList.contains('active')));
+                var isOpen = navLinks.classList.contains('active');
+                menuBtn.setAttribute('aria-expanded', String(isOpen));
+                if (isOpen) { lockBodyScroll(); } else { unlockBodyScroll(); }
             });
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
+            navLinks.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function() {
                     navLinks.classList.remove('active');
                     menuBtn.classList.remove('active');
                     menuBtn.setAttribute('aria-expanded', 'false');
+                    unlockBodyScroll();
                 });
             });
         }
         // Navbar scroll
-        const navbar = document.querySelector('.navbar');
+        var navbar = document.querySelector('.navbar');
         function onScroll() {
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
@@ -733,11 +765,11 @@
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
         // FAQ accordion
-        document.querySelectorAll('.faq-question').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const item = btn.closest('.faq-item');
-                const wasOpen = item.classList.contains('open');
-                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        document.querySelectorAll('.faq-question').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var item = btn.closest('.faq-item');
+                var wasOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
                 if (!wasOpen) item.classList.add('open');
             });
         });
