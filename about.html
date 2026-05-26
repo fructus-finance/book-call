@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us — Horbach Asset Guide</title>
-    <meta name="description" content="From experts for expats. Horbach Asset Guide is the dedicated expat-facing layer of Horbach, one of Germany's leading financial planners since 1983.">
+    <title>About Us — Fructus Finance</title>
+    <meta name="description" content="From experts for expats. Fructus Finance is the dedicated expat-facing layer of Horbach, one of Germany's leading financial planners since 1983.">
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -226,8 +226,8 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">
-                <img src="logo.png" alt="Horbach Asset Guide" class="logo-img">
-                <span class="logo-text">Horbach Asset Guide</span>
+                <img src="logo.png" alt="Fructus Finance" class="logo-img">
+                <span class="logo-text">Fructus Finance</span>
             </a>
             <button class="mobile-menu-btn" aria-label="Toggle menu">
                 <span></span><span></span><span></span>
@@ -275,7 +275,7 @@
                     </select>
                     </div>
                 </li>
-                <li><a href="https://www.instagram.com/horbach_asset_guide/" target="_blank" class="nav-ig">@horbach_asset_guide</a></li>
+                <li><a href="https://www.instagram.com/fructus_finance/" target="_blank" class="nav-ig">@fructus_finance</a></li>
             </ul>
         </div>
     </nav>
@@ -303,7 +303,7 @@
                 <div class="abt-mission-text">
                     <span class="section-tag">Who We Are</span>
                     <h2>We Were Not Happy With How Financial Planning for Expats Worked — So We Changed It.</h2>
-                    <p>Horbach Asset Guide is the dedicated expat-facing layer of <strong>Horbach</strong>, one of Germany's largest independent financial planning networks. We combine Horbach's institutional depth (1,000+ consultants, 39 centers, 40+ years) with a modern, multilingual approach built for the international professional.</p>
+                    <p>Fructus Finance is the dedicated expat-facing layer of <strong>Horbach</strong>, one of Germany's largest independent financial planning networks. We combine Horbach's institutional depth (1,000+ consultants, 39 centers, 40+ years) with a modern, multilingual approach built for the international professional.</p>
                     <p>Whether you are a software engineer in Berlin, a medical resident in Munich, or a founder in Hamburg — we speak your language, understand your visa status, and design plans that work across borders.</p>
                     <a href="index.html#book" class="btn btn-primary">Book a Free 15-Min Call</a>
                 </div>
@@ -325,12 +325,12 @@
             <div class="timeline-grid">
                 <div class="timeline-card">
                     <div class="timeline-year">1983</div>
-                    <h3>Meet Horbach</h3>
+                    <h3>Meet Fructus Finance</h3>
                     <p>Horbach was founded and has grown into one of Germany's leading independent financial planning providers. Today, the network includes more than 1,000 independent consultants across 39 advisory centers in 28 cities — serving private clients, companies, and specialists with Best-Select-Beratung.</p>
                 </div>
                 <div class="timeline-card">
                     <div class="timeline-year">2026</div>
-                    <h3>Horbach Asset Guide — Origins</h3>
+                    <h3>Fructus Finance — Origins</h3>
                     <p>We launched as a dedicated pilot project: <em>Financial planning for high-skilled migrants in Germany.</em> Built by expats who experienced the same confusion you did — pension letters in German, insurance fine print, and no one to ask in English. We exist to fix that.</p>
                 </div>
             </div>
@@ -399,10 +399,10 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="logo">
-                        <img src="logo.png" alt="Horbach Asset Guide" class="logo-img">
-                        <span class="logo-text">Horbach Asset Guide</span>
+                        <img src="logo.png" alt="Fructus Finance" class="logo-img">
+                        <span class="logo-text">Fructus Finance</span>
                     </a>
-                    <p>Smart finance for expats in Germany. Powered by Horbach — one of Germany's leading financial planners since 1983.</p>
+                    <p>Smart finance for expats in Germany. Powered by Fructus Finance — one of Germany's leading financial planners since 1983.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Navigate</h4>
@@ -423,8 +423,8 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© Horbach Asset Guide. All rights reserved.</p>
-                <p class="footer-ig">Follow: <a href="https://www.instagram.com/horbach_asset_guide/" target="_blank">@horbach_asset_guide</a></p>
+                <p>© Fructus Finance. All rights reserved.</p>
+                <p class="footer-ig">Follow: <a href="https://www.instagram.com/fructus_finance/" target="_blank">@fructus_finance</a></p>
             </div>
         </div>
     </footer>
@@ -441,21 +441,21 @@
     // Global translator function
     function translatePage(lang) {
         if (!lang) return;
-        var originalUrl = localStorage.getItem('horbach_original_url');
+        var originalUrl = localStorage.getItem('fructus_original_url');
         var currentUrl = window.location.href;
         if (!originalUrl && (currentUrl.includes('translate.google') || currentUrl.includes('.translate.goog'))) {
             var match = currentUrl.match(/[?&]u=([^&]+)/);
             if (match) { originalUrl = decodeURIComponent(match[1]); }
         }
         if (!originalUrl) { originalUrl = currentUrl; }
-        localStorage.setItem('horbach_original_url', originalUrl);
+        localStorage.setItem('fructus_original_url', originalUrl);
         window.location.href = 'https://translate.google.com/translate?sl=en&tl=' + lang + '&u=' + encodeURIComponent(originalUrl);
     }
 
     (function() {
         var currentUrl = window.location.href;
         if (!currentUrl.includes('translate.google') && !currentUrl.includes('.translate.goog')) {
-            localStorage.setItem('horbach_original_url', currentUrl);
+            localStorage.setItem('fructus_original_url', currentUrl);
         }
     })();
 

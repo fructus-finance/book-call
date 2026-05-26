@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services — Horbach Asset Guide</title>
+    <title>Services — Fructus Finance</title>
     <meta name="description" content="Financial planning services for expats in Germany: retirement, investing, real estate, insurance, and wealth building.">
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -352,8 +352,8 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">
-                <img src="logo.png" alt="Horbach Asset Guide" class="logo-img">
-                <span class="logo-text">Horbach Asset Guide</span>
+                <img src="logo.png" alt="Fructus Finance" class="logo-img">
+                <span class="logo-text">Fructus Finance</span>
             </a>
             <button class="mobile-menu-btn" aria-label="Toggle menu">
                 <span></span><span></span><span></span>
@@ -401,7 +401,7 @@
                     </select>
                     </div>
                 </li>
-                <li><a href="https://www.instagram.com/horbach_asset_guide/" target="_blank" class="nav-ig">@horbach_asset_guide</a></li>
+                <li><a href="https://www.instagram.com/fructus_finance/" target="_blank" class="nav-ig">@fructus_finance</a></li>
             </ul>
         </div>
     </nav>
@@ -620,11 +620,11 @@
                 </div>
                 <div class="faq-item">
                     <button class="faq-question">
-                        What makes Horbach different from other advisors?
+                        What makes Fructus Finance different from other advisors?
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
                     </button>
                     <div class="faq-answer">
-                        <p>Horbach follows Best-Select-Beratung: we compare products across the entire market, not just our own. With 40+ years, 39 centers, and 24/7 telephone support, you get institutional depth with personal attention. Horbach Asset Guide is the dedicated expat-facing layer of that network.</p>
+                        <p>Horbach follows Best-Select-Beratung: we compare products across the entire market, not just our own. With 40+ years, 39 centers, and 24/7 telephone support, you get institutional depth with personal attention. Fructus Finance is the dedicated expat-facing layer of that network.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -642,7 +642,7 @@
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
                     </button>
                     <div class="faq-answer">
-                        <p>Reach out via the contact form or email hello@horbachassetguide.com. We host educational sessions for companies, startups, and international communities on topics like pension basics, investing in Germany, and insurance essentials.</p>
+                        <p>Reach out via the contact form. We host educational sessions for companies, startups, and international communities on topics like pension basics, investing in Germany, and insurance essentials.</p>
                     </div>
                 </div>
             </div>
@@ -666,10 +666,10 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="logo">
-                        <img src="logo.png" alt="Horbach Asset Guide" class="logo-img">
-                        <span class="logo-text">Horbach Asset Guide</span>
+                        <img src="logo.png" alt="Fructus Finance" class="logo-img">
+                        <span class="logo-text">Fructus Finance</span>
                     </a>
-                    <p>Smart finance for expats in Germany. Powered by Horbach — one of Germany's leading financial planners since 1983.</p>
+                    <p>Smart finance for expats in Germany. Powered by Fructus Finance — one of Germany's leading financial planners since 1983.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Navigate</h4>
@@ -690,8 +690,8 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© Horbach Asset Guide. All rights reserved.</p>
-                <p class="footer-ig">Follow: <a href="https://www.instagram.com/horbach_asset_guide/" target="_blank">@horbach_asset_guide</a></p>
+                <p>© Fructus Finance. All rights reserved.</p>
+                <p class="footer-ig">Follow: <a href="https://www.instagram.com/fructus_finance/" target="_blank">@fructus_finance</a></p>
             </div>
         </div>
     </footer>
@@ -708,21 +708,21 @@
     // Global translator function
     function translatePage(lang) {
         if (!lang) return;
-        var originalUrl = localStorage.getItem('horbach_original_url');
+        var originalUrl = localStorage.getItem('fructus_original_url');
         var currentUrl = window.location.href;
         if (!originalUrl && (currentUrl.includes('translate.google') || currentUrl.includes('.translate.goog'))) {
             var match = currentUrl.match(/[?&]u=([^&]+)/);
             if (match) { originalUrl = decodeURIComponent(match[1]); }
         }
         if (!originalUrl) { originalUrl = currentUrl; }
-        localStorage.setItem('horbach_original_url', originalUrl);
+        localStorage.setItem('fructus_original_url', originalUrl);
         window.location.href = 'https://translate.google.com/translate?sl=en&tl=' + lang + '&u=' + encodeURIComponent(originalUrl);
     }
 
     (function() {
         var currentUrl = window.location.href;
         if (!currentUrl.includes('translate.google') && !currentUrl.includes('.translate.goog')) {
-            localStorage.setItem('horbach_original_url', currentUrl);
+            localStorage.setItem('fructus_original_url', currentUrl);
         }
     })();
 

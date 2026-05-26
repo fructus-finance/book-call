@@ -1,5 +1,5 @@
 /**
- * Horbach Asset Guide — Landing Page Scripts
+ * Fructus Finance — Landing Page Scripts
  */
 
 // Global translator function (called from inline onchange)
@@ -7,7 +7,7 @@ function translatePage(lang) {
     if (!lang) return;
 
     // 1. Try to get the original URL from localStorage
-    var originalUrl = localStorage.getItem('horbach_original_url');
+    var originalUrl = localStorage.getItem('fructus_original_url');
 
     // 2. If not in localStorage, try to extract from current Google Translate URL
     var currentUrl = window.location.href;
@@ -24,7 +24,7 @@ function translatePage(lang) {
     }
 
     // 4. Always store the original URL in localStorage for next time
-    localStorage.setItem('horbach_original_url', originalUrl);
+    localStorage.setItem('fructus_original_url', originalUrl);
 
     // 5. Build Google Translate URL
     window.location.href = 'https://translate.google.com/translate?sl=en&tl=' + lang + '&u=' + encodeURIComponent(originalUrl);
@@ -35,7 +35,7 @@ function translatePage(lang) {
     var currentUrl = window.location.href;
     var isTranslated = currentUrl.includes('translate.google') || currentUrl.includes('.translate.goog');
     if (!isTranslated) {
-        localStorage.setItem('horbach_original_url', currentUrl);
+        localStorage.setItem('fructus_original_url', currentUrl);
     }
 })();
 
@@ -516,7 +516,7 @@ function translatePage(lang) {
 
     if (calendlyWidget) {
         // TODO: Replace with your actual Calendly URL, e.g.:
-        // const calendlyUrl = 'https://calendly.com/horbach-asset-guide/15min';
+        // const calendlyUrl = 'https://calendly.com/fructus-finance/15min';
         const calendlyUrl = 'https://calendly.com/YOUR_CALENDLY_LINK';
 
         // If you have a real Calendly link, uncomment below to embed the widget

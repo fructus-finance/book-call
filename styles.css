@@ -1,5 +1,5 @@
 /* ============================================
-   Horbach Asset Guide — Landing Page Styles
+   Fructus Finance — Landing Page Styles
    Light, clean, professional finance aesthetic
    ============================================ */
 
@@ -231,21 +231,15 @@ img, svg {
 }
 
 .logo-img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+    display: block;
     flex-shrink: 0;
 }
 
 .logo-text {
     display: none;
-}
-
-@media (min-width: 480px) {
-    .logo-text {
-        display: inline;
-    }
 }
 
 .nav-links {
@@ -982,22 +976,22 @@ img, svg {
 }
 
 /* ============================================
-   HORBACH CREDIBILITY
+   CREDIBILITY
    ============================================ */
-.horbach-cred {
+.credibility {
     padding: 24px 0;
     background: var(--color-bg-elevated);
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
 }
 
-.horbach-cred .section-tag {
+.credibility .section-tag {
     background: var(--color-bg-card);
     border-color: var(--color-border);
     color: var(--color-green);
 }
 
-.horbach-cred .section-title {
+.credibility .section-title {
     color: var(--color-text);
 }
 
