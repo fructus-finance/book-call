@@ -510,6 +510,163 @@ function translatePage(lang) {
     }
 
     // ============================================
+    // Compound Interest Calculator
+    // ============================================
+    const intInputs = {
+        initial: document.getElementById('intInitial'),
+        monthly: document.getElementById('intMonthly'),
+        rate: document.getElementById('intRate'),
+        years: document.getElementById('intYears'),
+        compound: document.getElementById('intCompound'),
+        inflation: document.getElementById('intInflation'),
+    };
+
+    const intDisplays = {
+        initial: document.getElementById('valInitial'),
+        monthly: document.getElementById('valMonthly'),
+        rate: document.getElementById('valRate'),
+        years: document.getElementById('valYears'),
+        inflation: document.getElementById('valInflation'),
+    };
+
+    const intResults = {
+        balance: document.getElementById('resBalance'),
+        contributions: document.getElementById('resContributions'),
+        interest: document.getElementById('resInterest'),
+        real: document.getElementById('resReal'),
+        years: document.getElementById('resYears'),
+        barContrib: document.getElementById('barContrib'),
+        barInterest: document.getElementById('barInterest'),
+        insight: document.getElementById('intInsight'),
+        tableBody: document.getElementById('intTableBody'),
+    };
+
+    function formatCurrency(n) {
+        return '€' + Math.round(n).toLocaleString('de-DE');
+    }
+
+    function calculateCompoundInterest() {
+        const initial = parseFloat(intInputs.initial.value) || 0;
+        const monthly = parseFloat(intInputs.monthly.value) || 0;
+        const annualRate = parseFloat(intInputs.rate.value) || 0;
+        const years = parseInt(intInputs.years.value, 10) || 0;
+        const compoundFreq = parseInt(intInputs.compound.value, 10) || 12;
+        const inflationRate = parseFloat(intInputs.inflation.value) || 0;
+
+        const rate = annualRate / 100;
+        const inflation = inflationRate / 100;
+        const totalMonths = years * 12;
+
+        let balance = initial;
+        let totalContributions = initial;
+        let totalInterest = 0;
+        const yearlyData = [];
+
+        // Effective rate per compounding period
+        const periodsPerYear = compoundFreq;
+        const ratePerPeriod = rate / periodsPerYear;
+        const monthsPerPeriod = 12 / periodsPerYear;
+
+        let yearContributions = initial;
+        let yearInterest = 0;
+        let yearStartBalance = initial;
+
+        for (let month = 1; month <= totalMonths; month++) {
+            // Add monthly contribution at beginning of each month
+            balance += monthly;
+            totalContributions += monthly;
+            yearContributions += monthly;
+
+            // Apply interest at each compounding period boundary
+            if (month % monthsPerPeriod === 0) {
+                const interest = balance * ratePerPeriod;
+                balance += interest;
+                totalInterest += interest;
+                yearInterest += interest;
+            }
+
+            // Record at year boundaries
+            if (month % 12 === 0) {
+                const year = month / 12;
+                yearlyData.push({
+                    year: year,
+                    contributions: yearContributions,
+                    interest: yearInterest,
+                    balance: balance,
+                });
+                yearContributions = 0;
+                yearInterest = 0;
+            }
+        }
+
+        // Handle any remaining months if years isn't an integer (not needed with slider)
+        if (totalMonths % 12 !== 0) {
+            const remainingMonths = totalMonths % 12;
+            yearlyData.push({
+                year: years + ' (' + remainingMonths + 'm)',
+                contributions: yearContributions,
+                interest: yearInterest,
+                balance: balance,
+            });
+        }
+
+        // Inflation-adjusted real value
+        const realValue = balance / Math.pow(1 + inflation, years);
+
+        // Update result cards
+        intResults.balance.textContent = formatCurrency(balance);
+        intResults.contributions.textContent = formatCurrency(totalContributions);
+        intResults.interest.textContent = formatCurrency(totalInterest);
+        intResults.real.textContent = formatCurrency(realValue);
+        intResults.years.textContent = years;
+
+        // Update bar chart
+        const total = totalContributions + totalInterest;
+        const pctContrib = total > 0 ? (totalContributions / total) * 100 : 0;
+        const pctInterest = total > 0 ? (totalInterest / total) * 100 : 0;
+        intResults.barContrib.style.width = pctContrib + '%';
+        intResults.barInterest.style.width = pctInterest + '%';
+
+        // Update insight
+        if (monthly === 0 && initial === 0) {
+            intResults.insight.textContent = 'Enter an initial investment or monthly contribution to see your potential growth.';
+        } else if (totalInterest > totalContributions * 3) {
+            intResults.insight.textContent = 'Amazing! Compound interest is doing the heavy lifting — your money is making more money than you are putting in.';
+        } else if (years >= 20 && totalInterest > totalContributions) {
+            intResults.insight.textContent = 'Great progress. After ' + years + ' years, the interest earned exceeds your total contributions. Time is your greatest asset.';
+        } else {
+            intResults.insight.textContent = 'Consistent investing adds up. Keep going — the biggest gains come in the later years thanks to compound interest.';
+        }
+
+        // Update table
+        let tableHtml = '';
+        yearlyData.forEach((row, idx) => {
+            const isLast = idx === yearlyData.length - 1;
+            tableHtml += '<tr' + (isLast ? ' class="highlight"' : '') + '>' +
+                '<td>' + row.year + '</td>' +
+                '<td>' + formatCurrency(row.contributions) + '</td>' +
+                '<td>' + formatCurrency(row.interest) + '</td>' +
+                '<td>' + formatCurrency(row.balance) + '</td>' +
+                '</tr>';
+        });
+        intResults.tableBody.innerHTML = tableHtml;
+
+        // Update display labels
+        intDisplays.initial.textContent = formatCurrency(initial);
+        intDisplays.monthly.textContent = formatCurrency(monthly);
+        intDisplays.rate.textContent = annualRate.toFixed(1) + '%';
+        intDisplays.years.textContent = years;
+        intDisplays.inflation.textContent = inflationRate.toFixed(1) + '%';
+    }
+
+    if (intInputs.initial) {
+        Object.values(intInputs).forEach(input => {
+            input.addEventListener('input', calculateCompoundInterest);
+        });
+        calculateCompoundInterest();
+    }
+
+    // ============================================
     // Calendly Widget (lazy load)
     // ============================================
     const calendlyWidget = document.getElementById('calendly-widget');
