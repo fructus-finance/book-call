@@ -231,7 +231,7 @@ img, svg {
 }
 
 .logo-img {
-    height: 36px;
+    height: 32px;
     width: auto;
     object-fit: contain;
     display: block;
@@ -239,7 +239,9 @@ img, svg {
 }
 
 .logo-text {
-    display: none;
+    display: inline;
+    font-size: 1.1rem;
+    font-weight: 700;
 }
 
 .nav-links {
