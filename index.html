@@ -704,6 +704,7 @@
                                 <option value="evening">Evening (17:00 – 20:00)</option>
                             </select>
                         </div>
+                        <input type="hidden" name="referred_by" id="bookReferredBy" value="">
                         <button type="submit" class="btn btn-primary btn-full">Book My Free Call</button>
                         <p class="form-note">We will email you within 24 hours to confirm your time slot.</p>
                     </form>
@@ -740,6 +741,7 @@
                         <label for="message">Message</label>
                         <textarea id="message" name="message" rows="5" placeholder="Tell us what you need help with..." required></textarea>
                     </div>
+                    <input type="hidden" name="referred_by" id="contactReferredBy" value="">
                     <button type="submit" class="btn btn-primary btn-full">
                         <span class="btn-text">Send Message</span>
                         <span class="btn-loader" hidden>Sending...</span>

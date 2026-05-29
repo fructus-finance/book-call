@@ -43,6 +43,23 @@ function translatePage(lang) {
     'use strict';
 
     // ============================================
+    // Referral Tracking (reads ?ref=xxx from URL)
+    // ============================================
+    (function captureReferral() {
+        const params = new URLSearchParams(window.location.search);
+        const ref = params.get('ref') || params.get('referral') || params.get('utm_source');
+        if (ref) {
+            localStorage.setItem('fructus_referral', ref);
+        }
+        const storedRef = localStorage.getItem('fructus_referral');
+        if (storedRef) {
+            document.querySelectorAll('#bookReferredBy, #contactReferredBy').forEach(function(el) {
+                if (el) el.value = storedRef;
+            });
+        }
+    })();
+
+    // ============================================
     // Mobile Menu Toggle (with body scroll lock)
     // ============================================
     const menuBtn = document.querySelector('.mobile-menu-btn');
